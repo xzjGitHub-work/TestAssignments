@@ -1,9 +1,6 @@
-package com.lisonglin.frame;
-
-import javafx.scene.layout.GridPane;
+package com.xuzhaoju.frame;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

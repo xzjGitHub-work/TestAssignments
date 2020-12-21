@@ -1,4 +1,4 @@
-package com.lisonglin.model;
+package com.xuzhaoju.model;
 
 import java.time.LocalDate;
 

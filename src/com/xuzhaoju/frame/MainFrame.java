@@ -1,7 +1,4 @@
-package com.lisonglin.frame;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+package com.xuzhaoju.frame;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -9,9 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.lisonglin.model.Student;
-import com.lisonglin.service.StudentService;
-import com.lisonglin.util.DateUtil;
+import com.xuzhaoju.model.Student;
+import com.xuzhaoju.service.StudentService;
+import com.xuzhaoju.util.DateUtil;
 
 import javax.swing.JTable;
 import javax.swing.JScrollPane;

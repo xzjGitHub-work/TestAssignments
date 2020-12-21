@@ -1,4 +1,4 @@
-package com.lisonglin.model;
+package com.xuzhaoju.model;
 
 /**
  * java类作用描述

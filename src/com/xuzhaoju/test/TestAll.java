@@ -1,4 +1,4 @@
-package com.lisonglin.test;
+package com.xuzhaoju.test;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.lisonglin.dao.StudentDao;
-import com.lisonglin.model.Student;
-import com.lisonglin.util.JdbcUtil;
+import com.xuzhaoju.dao.StudentDao;
+import com.xuzhaoju.model.Student;
+import com.xuzhaoju.util.JdbcUtil;
 
 public class TestAll {
 	

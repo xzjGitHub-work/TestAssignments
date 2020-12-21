@@ -1,4 +1,4 @@
-package com.lisonglin.util;
+package com.xuzhaoju.util;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

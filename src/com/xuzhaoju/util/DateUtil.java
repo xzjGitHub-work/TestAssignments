@@ -1,4 +1,4 @@
-package com.lisonglin.util;
+package com.xuzhaoju.util;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import com.lisonglin.model.Student;
+import com.xuzhaoju.model.Student;
 
 public class DateUtil {
 	

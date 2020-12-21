@@ -1,4 +1,4 @@
-package com.lisonglin.frame;
+package com.xuzhaoju.frame;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,11 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.lisonglin.model.Student;
-import com.lisonglin.service.StudentService;
-import com.lisonglin.util.DateUtil;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
+import com.xuzhaoju.model.Student;
+import com.xuzhaoju.service.StudentService;
+import com.xuzhaoju.util.DateUtil;
 
 public class FromFjame extends JFrame {
 

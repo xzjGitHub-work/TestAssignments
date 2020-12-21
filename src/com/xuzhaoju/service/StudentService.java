@@ -1,10 +1,10 @@
-package com.lisonglin.service;
+package com.xuzhaoju.service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import com.lisonglin.dao.StudentDao;
-import com.lisonglin.model.Student;
+import com.xuzhaoju.dao.StudentDao;
+import com.xuzhaoju.model.Student;
 
 public class StudentService {
 	
