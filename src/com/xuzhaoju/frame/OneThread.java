@@ -10,7 +10,7 @@ import java.util.Date;
  * @author xuzhaoju
  * @createDate 2020/12/17 22:51
  */
-public class thread_one implements Runnable  {
+public class OneThread implements Runnable  {
     @Override
     public void run() {
         Date date = null;
@@ -24,7 +24,7 @@ public class thread_one implements Runnable  {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            login.userText.setText(format.format(date));
+            login.timeButton.setText(format.format(date));
         }
     }
 }

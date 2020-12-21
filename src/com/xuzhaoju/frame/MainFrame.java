@@ -25,24 +25,7 @@ public class MainFrame extends JFrame {
 	private List<Student> list;
 	public static Student stu;
 	public static MainFrame frame;
-	
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					frame = new MainFrame();
-//					//窗口居中
-//					frame.setLocationRelativeTo(null);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+
 
 	/**
 	 * Create the frame.
