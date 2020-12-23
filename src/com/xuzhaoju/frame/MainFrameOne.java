@@ -3,7 +3,6 @@ package com.xuzhaoju.frame;
 import com.xuzhaoju.model.Student;
 import com.xuzhaoju.service.StudentService;
 import com.xuzhaoju.util.DateUtil;
-import com.xuzhaoju.util.ModelUtils;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -54,8 +52,6 @@ public class MainFrameOne extends JFrame {
         JScrollPane calderlPane = new JScrollPane();
         calderlPane .setBounds(10, 130, 180, 332);
         timelPane.add(Chooser.getInstance(new Date()));
-        Chooser instance = Chooser.getInstance(new Date());
-        instance.setVisible(true);
         contentPane.add(calderlPane);
 
         //右侧主题
@@ -71,7 +67,7 @@ public class MainFrameOne extends JFrame {
         JButton button = new JButton("基本档案");
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                quaryAll();
+//                quaryAll();
             }
         });
         button.setBounds(140, 22, 100, 50);
@@ -80,8 +76,6 @@ public class MainFrameOne extends JFrame {
         JButton button_1 = new JButton("采购订货");
         button_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                new FromFjame().setVisible(true);
 
             }
         });
@@ -93,8 +87,6 @@ public class MainFrameOne extends JFrame {
         JButton button_2 = new JButton("仓库入库");
         button_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                update();
-                quaryAll();
             }
         });
         button_2.setBounds(340, 22, 100, 50);
@@ -103,8 +95,6 @@ public class MainFrameOne extends JFrame {
         JButton button_3 = new JButton("仓库出库");
         button_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                remove();
-                quaryAll();
             }
         });
         button_3.setBounds(440, 22, 100, 50);
@@ -113,8 +103,6 @@ public class MainFrameOne extends JFrame {
         JButton button_4 = new JButton("人员管理");
         button_4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                remove();
-                quaryAll();
             }
         });
         button_4.setBounds(540, 22, 100, 50);
@@ -123,44 +111,10 @@ public class MainFrameOne extends JFrame {
         JButton button_5 = new JButton("部门管理");
         button_5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                remove();
-                quaryAll();
             }
         });
         button_5.setBounds(640, 22, 100, 50);
         contentPane.add(button_5);
 
-    }
-    //查询
-    public void quaryAll() {
-        StudentService ss=new StudentService();
-        list = ss.queryAll();
-        if(list==null) {
-            JOptionPane.showMessageDialog(null, "服务器繁忙");
-            return;
-        }
-        Object[][] data = DateUtil.listToArray(list);
-        table.setModel(new DefaultTableModel(data, columnCount));
-    }
-
-    //删除
-    private void remove() {
-        int i = table.getSelectedRow();
-        Student s = list.get(i);
-        int code = new StudentService().delete(s.getId());
-        if(code==0) {
-            JOptionPane.showMessageDialog(null, "删除成功");
-            return;
-        }else {
-            JOptionPane.showMessageDialog(null,DateUtil.errors.get(code) );
-        }
-        quaryAll();
-    }
-
-    //修改
-    private void update() {
-        int i = table.getSelectedRow();
-        stu = list.get(i);
-        new FromFjame().setVisible(true);
     }
 }
