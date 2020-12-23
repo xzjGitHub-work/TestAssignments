@@ -1,15 +1,12 @@
 package com.xuzhaoju.frame;
 
 import com.xuzhaoju.util.JdbcUtil;
-import com.xuzhaoju.util.ModelUtils;
+import com.xuzhaoju.util.OneThread;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * java类作用描述
@@ -19,6 +16,7 @@ public class login {
     public static JFrame frameBig;
     public static JLabel timeButton;
     public static JTextField userText;
+    public static MainFrameOne  mainFrameOne;
 
     public static void main(String[] args) {
         frameBig = new JFrame("超市管理系统");
@@ -116,7 +114,7 @@ public class login {
                         JOptionPane.showMessageDialog( null , "当前用户密码不正确" );
 
                     } else {
-                        MainFrameOne mainFrameOne = new MainFrameOne();
+                        mainFrameOne = new MainFrameOne();
                         mainFrameOne.setVisible(true);
                         frameBig.setVisible(false);
 //                        EventQueue.invokeLater(new Runnable() {

@@ -17,7 +17,7 @@
  * 2. you can change week label content by showTEXT.
  * 3. you can change dayOfWeek order by defaultStartDAY.
  */
-package com.xuzhaoju.frame;
+package com.xuzhaoju.util;
 
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;

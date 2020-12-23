@@ -1,4 +1,4 @@
-package com.xuzhaoju.frame;
+package com.xuzhaoju.frame.puchase;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -6,8 +6,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.xuzhaoju.model.Student;
-import com.xuzhaoju.service.StudentService;
+import com.xuzhaoju.frame.MainFrameOne;
+import com.xuzhaoju.frame.login;
+import com.xuzhaoju.model.EmployeeModel;
+import com.xuzhaoju.service.EmployeeService;
 import com.xuzhaoju.util.DateUtil;
 
 import javax.swing.JTable;
@@ -21,51 +23,53 @@ public class PurchaseFrame extends JFrame {
 
     private JPanel contentPane;
     private JTable table;
-    private String[] columnCount= {"序号","书名","价格","作者"};
-    private List<Student> list;
-    public static Student stu;
-    public static MainFrame frame;
+    private String[] columnCount= {"序号","姓名","年龄","性别","职位","部门"};
+    private List<EmployeeModel> list;
+    public static EmployeeModel stu;
+    public static PurchaseFrame frame;
 
 
+    public static void main(String[] args) {
+        PurchaseFrame purchaseFrame = new PurchaseFrame();
+        purchaseFrame.setVisible(true);
+    }
     /**
      * Create the frame.
      */
     public PurchaseFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 764, 369);
+        setBounds(100, 100, 760, 369);
         contentPane = new JPanel();
+        contentPane.setName("部门管理");
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(29, 58, 692, 332);
+        scrollPane.setBounds(30, 30, 700, 200);
         contentPane.add(scrollPane);
 
         table = new JTable();
         scrollPane.setViewportView(table);
 
-        JButton button = new JButton("部门");
+        JButton button = new JButton("查询");
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 quaryAll();
             }
         });
-        button.setBounds(58, 22, 93, 23);
+        button.setBounds(150, 230, 60, 23);
         contentPane.add(button);
 
-        JButton button_1 = new JButton("姓名");
+        JButton button_1 = new JButton("添加");
         button_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                new FromFjame().setVisible(true);
+                new AddPurchaseFrame().setVisible(true);
 
             }
         });
-        button_1.setBounds(205, 22, 93, 23);
+        button_1.setBounds(250, 230, 60, 23);
         contentPane.add(button_1);
-        //全屏
-//		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         JButton button_2 = new JButton("修改");
         button_2.addActionListener(new ActionListener() {
@@ -74,7 +78,7 @@ public class PurchaseFrame extends JFrame {
                 quaryAll();
             }
         });
-        button_2.setBounds(357, 22, 93, 23);
+        button_2.setBounds(350, 230, 60, 23);
         contentPane.add(button_2);
 
         JButton button_3 = new JButton("删除");
@@ -84,27 +88,37 @@ public class PurchaseFrame extends JFrame {
                 quaryAll();
             }
         });
-        button_3.setBounds(539, 22, 93, 23);
+        button_3.setBounds(450, 230, 60, 23);
         contentPane.add(button_3);
 
+
+        JButton button_5 = new JButton("返回");
+        button_5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MainFrameOne.purchaseFrame.setVisible(false);
+                login.mainFrameOne.setVisible(true);
+            }
+        });
+        button_5.setBounds(550, 230, 60, 23);
+        contentPane.add(button_5);
     }
     //查询
     public void quaryAll() {
-        StudentService ss=new StudentService();
+        EmployeeService ss=new EmployeeService();
         list = ss.queryAll();
         if(list==null) {
             JOptionPane.showMessageDialog(null, "服务器繁忙");
             return;
         }
-        Object[][] data = DateUtil.listToArray(list);
+        Object[][] data = DateUtil.listToArrayByEmployee(list);
         table.setModel(new DefaultTableModel(data, columnCount));
     }
 
     //删除
     private void remove() {
         int i = table.getSelectedRow();
-        Student s = list.get(i);
-        int code = new StudentService().delete(s.getId());
+        EmployeeModel s = list.get(i);
+        int code = new EmployeeService().delete(s.getId());
         if(code==0) {
             JOptionPane.showMessageDialog(null, "删除成功");
             return;
@@ -118,6 +132,6 @@ public class PurchaseFrame extends JFrame {
     private void update() {
         int i = table.getSelectedRow();
         stu = list.get(i);
-        new FromFjame().setVisible(true);
+        new AddPurchaseFrame().setVisible(true);
     }
 }

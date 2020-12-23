@@ -1,12 +1,11 @@
 package com.xuzhaoju.frame;
 
+import com.xuzhaoju.frame.puchase.PurchaseFrame;
 import com.xuzhaoju.model.Student;
-import com.xuzhaoju.service.StudentService;
-import com.xuzhaoju.util.DateUtil;
+import com.xuzhaoju.util.Chooser;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +30,7 @@ public class MainFrameOne extends JFrame {
     public static Student stu;
     public static MainFrame frame;
     public static JButton text = new JButton();
+    public static PurchaseFrame purchaseFrame;
 
 
     public MainFrameOne() {
@@ -103,6 +103,10 @@ public class MainFrameOne extends JFrame {
         JButton button_4 = new JButton("人员管理");
         button_4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                purchaseFrame = new PurchaseFrame();
+                PurchaseFrame.frame = purchaseFrame;
+                purchaseFrame.setVisible(true);
+                login.mainFrameOne.setVisible(false);
             }
         });
         button_4.setBounds(540, 22, 100, 50);
@@ -111,6 +115,7 @@ public class MainFrameOne extends JFrame {
         JButton button_5 = new JButton("部门管理");
         button_5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
             }
         });
         button_5.setBounds(640, 22, 100, 50);

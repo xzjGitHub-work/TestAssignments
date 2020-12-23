@@ -96,7 +96,7 @@ public class MainFrame extends JFrame {
 			JOptionPane.showMessageDialog(null, "服务器繁忙");
 			return;
 		}
-		Object[][] data = DateUtil.listToArray(list);
+		Object[][] data = DateUtil.listToArrayByStud(list);
 		table.setModel(new DefaultTableModel(data, columnCount));
 	}
 	
