@@ -1,5 +1,8 @@
 package com.xuzhaoju.frame;
 
+import com.xuzhaoju.util.JdbcUtil;
+import com.xuzhaoju.util.ModelUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,16 +16,9 @@ import java.util.Date;
  */
 public class login {
 
-    public static MainFrame frame;
     public static JFrame frameBig;
     public static JLabel timeButton;
     public static JTextField userText;
-    public static final int DEFAULT_WIDTH = 300;                        //面板的宽度
-    public static final int PADDING_X = 30;
-    public static final int PADDING_Y = 60;
-    public static final int clockRadius = (DEFAULT_WIDTH - 60) / 2;            //定义时钟圆的半径radius
-    int xCenter = PADDING_X + clockRadius;                                 //时钟圆的圆心坐标
-    int yCenter = PADDING_Y + clockRadius;
 
     public static void main(String[] args) {
         frameBig = new JFrame("超市管理系统");
@@ -81,12 +77,9 @@ public class login {
         loginButton.addActionListener((new SubmitAction(passwordText, userText)));
 
         //时间按钮
-        timeButton = new JLabel(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+        timeButton = new JLabel();
         timeButton.setBounds(520, 45, 150, 25);
         panel.add(timeButton);
-
-
-
         //背景
         JLabel jLabel = new JLabel(imageIcon);
         jLabel.setBounds(0,0,699,400);
@@ -108,46 +101,44 @@ public class login {
         public void actionPerformed(ActionEvent e) {
             String userName = jTextField.getText();
             String password = passwordField.getText();
-            ;
+            Connection conn = null;
+            Statement st = null;
+            ResultSet rs = null;
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_library?useSSL=false&serverTimezone=UTC", "root", "root");
-                Statement st = conn.createStatement();
-                System.out.println("select * from user where account = '" + userName + "'");
-                ResultSet rs = st.executeQuery("select * from user where account = '" + userName + "'");
+                conn = JdbcUtil.getConnection();
+                st = conn.createStatement();
+                rs = st.executeQuery("select * from user where account = '" + userName + "'");
                 if (!rs.next()) {
-                    System.out.println("当用户名不存在");
                     JOptionPane.showMessageDialog(null,"当用户名不存在");
                 } else {
-                    System.out.println(                    "select * from user where account = '" + userName + "' and password = '" + password + "'");
                     ResultSet verify = st.executeQuery("select * from user where account = '" + userName + "' and password = '" + password + "'");
                     if (!verify.next()) {
-                        System.out.println( "当前用户密码不正确" );
                         JOptionPane.showMessageDialog( null , "当前用户密码不正确" );
-                   
+
                     } else {
-                        EventQueue.invokeLater(new Runnable() {
-                            public void run() {
-                                try {
-                                    frameBig.setVisible(false);
-                                    frame = new MainFrame();
-                                    //窗口居中
-                                    frame.setLocationRelativeTo(null);
-                                    frame.setVisible(true);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
+                        MainFrameOne mainFrameOne = new MainFrameOne();
+                        mainFrameOne.setVisible(true);
+                        frameBig.setVisible(false);
+//                        EventQueue.invokeLater(new Runnable() {
+//                            public void run() {
+//                                try {
+//                                    frameBig.setVisible(false);
+//                                    frame = new MainFrame();
+//                                    //窗口居中
+//                                    frame.setLocationRelativeTo(null);
+//                                    frame.setVisible(true);
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        });
                    }
                 }
-                setIsView();
-                rs.close();
-                st.close();
-                conn.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("报错了");
+            }finally {
+                JdbcUtil.release(conn);
             }
         }
 

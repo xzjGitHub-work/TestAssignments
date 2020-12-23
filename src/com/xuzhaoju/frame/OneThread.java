@@ -1,5 +1,7 @@
 package com.xuzhaoju.frame;
 
+import com.xuzhaoju.util.ModelUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,7 +16,6 @@ public class OneThread implements Runnable  {
     @Override
     public void run() {
         Date date = null;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         while (true){
             date = Calendar.getInstance().getTime();
             Thread thread = Thread.currentThread();
@@ -24,7 +25,9 @@ public class OneThread implements Runnable  {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            login.timeButton.setText(format.format(date));
+            ModelUtils.TIME = ModelUtils.getSimpleDateFormat().format(date);
+            login.timeButton.setText(ModelUtils.TIME);
+            MainFrameOne.text.setText(ModelUtils.TIME);
         }
     }
 }
