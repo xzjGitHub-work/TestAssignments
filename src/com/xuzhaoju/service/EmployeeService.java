@@ -15,9 +15,9 @@ import java.util.List;
  * @createDate 2020/12/23 14:59
  */
 public class EmployeeService {
-    public List<EmployeeModel> queryAll(){
+    public List<EmployeeModel> queryAll(EmployeeModel model){
         try {
-            return new EmployeeDao().queryAll();
+            return new EmployeeDao().queryAll(model);
         } catch (SQLException e) {
             e.printStackTrace();
         }

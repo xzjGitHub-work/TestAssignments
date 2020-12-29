@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.xuzhaoju.model.EmployeeModel;
 import com.xuzhaoju.model.EmployeeModel;
+import com.xuzhaoju.util.EmptyUtils;
 import com.xuzhaoju.util.JdbcUtil;
 
 public class EmployeeDao {
@@ -61,12 +62,18 @@ public class EmployeeDao {
         JdbcUtil.release(conn);
     }
 
-    public List<EmployeeModel> queryAll() throws SQLException{
+    public List<EmployeeModel> queryAll(EmployeeModel model) throws SQLException{
         List<EmployeeModel> stus=new ArrayList<>();
         //获取连接
         Connection conn = JdbcUtil.getConnection();
         //准备sql
-        String sql="select id,name,age ,gender,postion,department  from employee";
+        StringBuilder sql = new StringBuilder("select id,name,age ,gender,postion,department  from employee");
+        if (!EmptyUtils.isAnyoneEmpty(model)){
+            if (!EmptyUtils.isEmpty(model.getName())){
+                sql.append(" AND Name LIKE '%"+model.getName()+"%'");
+
+            }
+        }
         //获取PreparedStatement
         PreparedStatement ps=conn.prepareStatement(sql);
         //执行sql

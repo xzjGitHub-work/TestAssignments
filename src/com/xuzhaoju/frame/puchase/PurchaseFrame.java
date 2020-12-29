@@ -55,7 +55,7 @@ public class PurchaseFrame extends JFrame {
         JButton button = new JButton("查询");
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                quaryAll();
+                quaryAll(null);
             }
         });
         button.setBounds(150, 230, 60, 23);
@@ -75,7 +75,7 @@ public class PurchaseFrame extends JFrame {
         button_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 update();
-                quaryAll();
+                quaryAll(null);
             }
         });
         button_2.setBounds(350, 230, 60, 23);
@@ -85,7 +85,7 @@ public class PurchaseFrame extends JFrame {
         button_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 remove();
-                quaryAll();
+                quaryAll(null);
             }
         });
         button_3.setBounds(450, 230, 60, 23);
@@ -103,9 +103,9 @@ public class PurchaseFrame extends JFrame {
         contentPane.add(button_5);
     }
     //查询
-    public void quaryAll() {
+    public void quaryAll(EmployeeModel model) {
         EmployeeService ss=new EmployeeService();
-        list = ss.queryAll();
+        list = ss.queryAll(model);
         if(list==null) {
             JOptionPane.showMessageDialog(null, "服务器繁忙");
             return;
@@ -125,7 +125,7 @@ public class PurchaseFrame extends JFrame {
         }else {
             JOptionPane.showMessageDialog(null,DateUtil.errors.get(code) );
         }
-        quaryAll();
+        quaryAll(null);
     }
 
     //修改
