@@ -75,7 +75,7 @@ public class EmployeeDao {
             }
         }
         //获取PreparedStatement
-        PreparedStatement ps=conn.prepareStatement(sql);
+        PreparedStatement ps=conn.prepareStatement(sql.toString());
         //执行sql
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
